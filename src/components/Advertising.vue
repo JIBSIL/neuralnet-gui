@@ -5,7 +5,8 @@
             <!-- Ad content goes here -->
             <p>Your Ad Here</p>
         </div>
-        <p class="mt-4">Interested in advertising your product here? <a href="mailto:your-email@example.com" class="underline text-blue-600">Contact us</a> for rates and options.</p>
+        <p class="mt-4">Interested in advertising your product here? <a href="mailto:your-email@example.com"
+                class="underline text-blue-600">Contact us</a> for rates and options.</p>
     </div>
 </template>
 
