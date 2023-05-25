@@ -1,0 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  background-color: #f5f5f5;
+  margin-bottom: 1em;
+}
