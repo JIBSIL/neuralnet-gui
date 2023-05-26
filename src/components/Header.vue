@@ -1,5 +1,5 @@
 <template>
-  <header class="text-black body-font bg-gray-300">
+  <header class="text-black body-font">
     <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
       <a class="flex title-font font-medium items-center text-black mb-4 md:mb-0">
         <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="28" height="32">
@@ -32,11 +32,11 @@
         <span class="ml-3 text-xl">NeuralNetwork</span>
       </a>
       <nav
-        class="mt-4 bg-gray-300 md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center">
-        <RouterLink to="/" class="mr-5 hover:text-white">Home</RouterLink>
-        <RouterLink to="/train" class="mr-5 hover:text-white">Train</RouterLink>
-        <RouterLink to="/models" class="mr-5 hover:text-white">Models</RouterLink>
-        <RouterLink to="/faq" class="mr-5 hover:text-white">FAQ</RouterLink>
+        class="mt-4 bg-gray-200 md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center">
+        <RouterLink to="/" class="mr-5 hover:text-gray-500">Home</RouterLink>
+        <RouterLink to="/train" class="mr-5 hover:text-gray-500">Train</RouterLink>
+        <RouterLink to="/models" class="mr-5 hover:text-gray-500">Models</RouterLink>
+        <RouterLink to="/faq" class="mr-5 hover:text-gray-500">FAQ</RouterLink>
       </nav>
       <!-- <RouterLink to="/logout">
         <button
