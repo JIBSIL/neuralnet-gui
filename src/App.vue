@@ -1,15 +1,11 @@
 <template>
-  <div id="app">
+  <div id="app" class="h-screen">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import DataSelection from './DataSelection.vue';
 export default {
   name: 'App',
-  components: {
-        Header
-    }
 }
 </script>
