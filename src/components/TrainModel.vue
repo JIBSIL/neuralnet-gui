@@ -44,14 +44,18 @@ export default {
         FollowUs,
         Header
     },
+    data() {
+        return {
+            dataset: {}
+        }
+    },
     methods: {
         handleInputDataUpdate(inputDataRows) {
-            // Use the updated input data rows in your main component
-            console.log(inputDataRows);
+            this.dataset = inputDataRows;
         },
         handleTrainModel() {
             // Your existing train model logic
-            console.log('m')
+            console.log(this.dataset)
         }
     }
 }
