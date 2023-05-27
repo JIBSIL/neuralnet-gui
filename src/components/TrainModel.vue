@@ -6,10 +6,10 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
                     <div class="flex flex-col space-y-6 h-full">
                         <DataSelection />
-                        <ModelSelection />
+                        <ModelSelection @train-model="handleTrainModel" />
                     </div>
                     <div class="flex flex-col space-y-6 h-full">
-                        <InputData />
+                        <InputData @input-data-updated="handleInputDataUpdate" />
                         <TrainingProgress />
                     </div>
                 </div>
@@ -33,7 +33,6 @@ import Advertising from './Advertising.vue';
 import FollowUs from './FollowUs.vue';
 import Header from './Header.vue';
 
-
 export default {
     components: {
         DataSelection,
@@ -44,6 +43,16 @@ export default {
         Advertising,
         FollowUs,
         Header
+    },
+    methods: {
+        handleInputDataUpdate(inputDataRows) {
+            // Use the updated input data rows in your main component
+            console.log(inputDataRows);
+        },
+        handleTrainModel() {
+            // Your existing train model logic
+            console.log('m')
+        }
     }
 }
-</script>  
+</script>

@@ -3,14 +3,20 @@
         <h2 class="text-xl font-bold mb-4">Model Selection</h2>
         <select class="border p-2 rounded w-full">
             <option>Select a model type</option>
-            <!-- Add options here -->
+            <option value="basic">Basic</option>
+            <option disabled value="gpu">Basic (GPU Accelerated)</option>
         </select>
-        <button id="trainModel" class="bg-green-500 text-white p-2 rounded mt-4">Train Model</button>
+        <button id="trainModel" class="bg-green-500 text-white p-2 rounded mt-4" @click="trainModelClicked">Train Model</button>
     </div>
 </template>
 
 <script>
 export default {
     name: 'ModelSelection',
+    methods: {
+        trainModelClicked() {
+            this.$emit('train-model');
+        }
+    }
 }
 </script>
