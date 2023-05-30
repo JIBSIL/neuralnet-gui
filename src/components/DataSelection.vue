@@ -2,7 +2,7 @@
     <div class="bg-white p-6 rounded-lg flex-1">
         <h2 class="text-xl font-bold mb-4">Data Selection</h2>
         <select class="border p-2 rounded w-full">
-            <option>Select a data set</option>
+            <option>Select a data set, or add data using the "Add Data" tab</option>
             <!-- Add options here -->
         </select>
     </div>

@@ -5,15 +5,17 @@
             <div class="container mx-auto space-y-6 lg:space-y-12">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
                     <div class="bg-white p-6 rounded-lg">
-                        <h2 class="text-xl font-bold mb-4">Train Using a Private Model</h2>
+                        <h2 class="text-xl font-bold mb-4">Train Using a Saved (Private) Model</h2>
                         <select v-model="selectedPrivateModel" class="border p-2 rounded w-full mb-4">
                             <option disabled value="">Select a pre-saved private model</option>
-                            <option v-for="model in privateModels" :key="model.id" :value="model.id">{{ model.name }}
+                            <option v-for="model in privateModels" :key="model.name" :value="model.name">{{ model.name }}
                             </option>
                         </select>
                         <button @click="trainModel(selectedPrivateModel)" class="bg-green-500 text-white p-2 rounded mr-4"
                             :disabled="!selectedPrivateModel">Train Model</button>
-                        <button @click="downloadModel(selectedPrivateModel)" class="bg-blue-500 text-white p-2 rounded"
+                        <button @click="testModel(selectedPrivateModel)" class="bg-yellow-600 text-white p-2 rounded mr-2"
+                            :disabled="!selectedPrivateModel">Test/Use Model</button>
+                        <button @click="downloadModel(selectedPrivateModel)" class="bg-blue-500 text-white p-2 rounded ml-2"
                             :disabled="!selectedPrivateModel">Download Model</button>
                     </div>
 
@@ -21,12 +23,14 @@
                         <h2 class="text-xl font-bold mb-4">Train Using a Public Model</h2>
                         <select v-model="selectedPublicModel" class="border p-2 rounded w-full mb-4">
                             <option disabled value="">Select a pre-saved public model</option>
-                            <option v-for="model in publicModels" :key="model.id" :value="model.id">{{ model.name }}
+                            <option v-for="model in publicModels" :key="model.name" :value="model.model">{{ model.name }}
                             </option>
                         </select>
                         <button @click="trainModel(selectedPublicModel)" class="bg-green-500 text-white p-2 rounded mr-4"
                             :disabled="!selectedPublicModel">Train Model</button>
-                        <button @click="downloadModel(selectedPublicModel)" class="bg-blue-500 text-white p-2 rounded"
+                        <button @click="testModel(selectedPublicModel)" class="bg-yellow-600 text-white p-2 mr-2 rounded"
+                            :disabled="!selectedPublicModel">Test/Use Model</button>
+                        <button @click="downloadModel(selectedPublicModel)" class="bg-blue-500 text-white p-2 rounded ml-2"
                             :disabled="!selectedPublicModel">Download Model</button>
                     </div>
                 </div>
@@ -68,19 +72,40 @@ export default {
     data() {
         return {
             privateModels: [
-                { id: 1, name: 'Private Model 1' },
-                { id: 2, name: 'Private Model 2' },
+                // { id: 1, name: 'Private Model 1' },
             ],
             publicModels: [
-                { id: 3, name: 'Public Model 1' },
-                { id: 4, name: 'Public Model 2' },
+                // { id: 3, name: 'Public Model 1' },
+                // { id: 4, name: 'Public Model 2' },
             ],
             selectedPrivateModel: '',
+            selectedPrivateModelName: '',
             selectedPublicModel: ''
         };
     },
     components: {
         Header
+    },
+    created() {
+        const models = localStorage.getItem("models")
+        if (models) {
+            let obj;
+            try {
+                obj = JSON.parse(models);
+            } catch (e) {
+                console.log(e)
+            }
+
+            for (const [key, item] of Object.entries(obj)) {
+                this.privateModels.push({
+                    // id: this.privateModels.length + 1,
+                    name: key,
+                    model: item
+                });
+            }
+        } else {
+            // set disabled, create one!
+        }
     },
     methods: {
         trainModel(modelId) {
@@ -88,6 +113,15 @@ export default {
         },
         downloadModel(modelId) {
             alert(`Downloading model: ${modelId}`);
+        },
+        testModel(model) {
+            for (let i = 0; i < this.privateModels.length; i++) {
+                if (model === this.privateModels[i].name) {
+                    localStorage.setItem("testModel", JSON.stringify(this.privateModels[i].model))
+                    localStorage.setItem("testModelName", model)
+                }
+            }
+            this.$router.push("test")
         }
     }
 }
