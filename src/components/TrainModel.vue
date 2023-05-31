@@ -65,7 +65,7 @@ export default {
                         confirmButtonText: 'Save',
                         denyButtonText: 'Cancel',
                         customClass: {
-                            popup: 'p-2 rounded-lg bg-gray-600 shadow-lg sm:p-3',
+                            popup: 'p-2 rounded-lg bg-gray-600',
                             title: 'text-2xl font-medium text-white truncate',
                             input: 'bg-white text-center',
                             confirmButton: 'bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mx-2',

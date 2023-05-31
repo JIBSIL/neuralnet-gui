@@ -7,8 +7,11 @@
                     <h2 class="text-xl font-bold mb-4">Test Your Neural Network</h2>
 
                     <div class="mb-4">
-                        <p class="block text-gray-700 text-md font-bold mb-2">Model Selected: <span>{{ modelName }}</span></p>
-                        
+                        <p class="block text-gray-700 text-md font-bold mb-2">Model Selected: <span>{{ modelName }}</span>
+                        </p>
+                        <p class="block text-gray-700 text-md mb-2">INFO: This only works with Basic neural networks
+                            (LSTM/GPU are not supported)</p>
+
                         <!-- <select id="model-select" v-model="selectedModel" class="border p-2 rounded w-full">
                             <option disabled value="">Please select a model</option>
                             <option v-for="model in models" :key="model.id" :value="model.id">{{ model.name }}</option>
@@ -67,8 +70,38 @@ export default {
     },
     methods: {
         runTest() {
-            const model = brain.fromJSON()
-            alert(`Running test with model ${this.selectedModel} and test data: ${this.testData}`);
+            const model = new brain.NeuralNetwork();
+
+            model.fromJSON(this.selectedModel);
+
+            let input = this.testData;
+            
+            try {
+                input = JSON.parse(this.testData)
+                if (!Array.isArray(input)) {
+                    const temp = input;
+                    input = [];
+                    input.push(temp)
+                }
+            } catch (e) { console.log(e) }
+
+            console.log(input)
+
+            const modelOutput = model.run(input)
+
+            this.$swal.fire({
+                title: "Success!",
+                html: `<p class="text-white">Output: ${modelOutput}</p>`,
+                icon: 'success',
+                customClass: {
+                    popup: 'p-2 rounded-lg bg-gray-600 shadow-lg sm:p-3',
+                    title: 'text-2xl font-medium text-white truncate',
+                    input: 'bg-white text-center',
+                    confirmButton: 'bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mx-2',
+                    cancelButton: 'bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 border-b-4 border-gray-700 hover:gray-blue-500 rounded mx-2',
+                }
+            })
+            // alert(`Running test with model ${this.selectedModel} and test data: ${this.testData}`);
             // Here you would actually run your neural network test and set the result
             // this.testResult = runNeuralNetworkTest(this.selectedModel, this.testData);
         }
