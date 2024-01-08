@@ -1,8 +1,11 @@
-# Vue 3 + Vite
+# Neural Networks in your browser!
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+neuralnet-gui is a state-of-the-art approach to training AI models!
 
-## Domains
+Through the use of Brain.js, Vue and Vite, I have created a web frontend to allow for the creation of neural networks completely in your browser!
 
-qivoai.com
-qivo.ai
+# Running
+Simply run `yarn install && vite` to start a development server and check it out!
+
+# Contributing
+Pull requests are welcome! Just open one up and I'll take a look at it!
